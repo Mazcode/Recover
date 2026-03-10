@@ -17,7 +17,8 @@ namespace ConsoleAppFW//命名空间
         /// <param name="args">字符串数组</param>
         static void Main(string[] args)
         {
-
+            Console.WriteLine("Hello Max");
+            Console.ReadLine();
         }
     }
 }
