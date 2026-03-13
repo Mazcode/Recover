@@ -12,11 +12,16 @@ namespace CLIDemo.Command
         public string Description => "DIV <数字> : 将当前值除以数字";
         public void Execute(ref decimal current, string[] args)
         {
-            if (args.Length != 1) throw new ArgumentException("需要提供一个数字参数");
-            decimal number = decimal.Parse(args[0]);
-            if (number == 0) throw new DivideByZeroException("除数不能为零！");
-            current /= number;
-            Console.WriteLine($">>> 执行除法：/{number}，当前结果：{current}");
+            if (ArgHelpers.TryGetDecimal(args, out decimal number, out string errmsg))
+            {
+                if (number == 0) throw new DivideByZeroException("除数不能为零！");
+                current /= number;
+                Console.WriteLine($">>> 执行除法：/{number}，当前结果：{current}");
+            }
+            else
+            {
+                throw new ArgumentException(errmsg);
+            }
         }
     }
 }

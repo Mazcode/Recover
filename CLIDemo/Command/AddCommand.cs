@@ -14,14 +14,17 @@ namespace CLIDemo.Command
 
         public void Execute(ref decimal current, string[] args)
         {
-            if (args.Length!=1)
+            if (ArgHelpers.TryGetDecimal(args, out decimal number, out string errmsg))
             {
-                throw new ArgumentException("需要提供一个数字");
+                current += number;
+                Console.WriteLine($">>> 执行加法：+{number}，当前结果：{current}");
             }
-
-            decimal number = decimal.Parse(args[0]);
-            current += number;
-            Console.WriteLine($">>> 执行加法：+{number}，当前结果：{current}");
+            else
+            {
+                throw new ArgumentException(errmsg);
+            }
         }
+
+
     }
 }

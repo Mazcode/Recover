@@ -89,61 +89,62 @@ namespace CLIDemo
             #endregion
 
             #region 船新版本
+            Console.Write("> ");
             decimal current = 0m;
             bool isRunning = true;//运行标识
-            Dictionary<string, Command.ICommand> commandDic = InitializeCommands(ref current);
-
+            Dictionary<string, Command.ICommand> commandDic = InitializeCommands();//初始化指令表
+            ExcuteCmd(commandDic["help"],ref current,Array.Empty<string>());
             while (isRunning)
             {
                 string input = Console.ReadLine();
+                //如果用户没有输入，直接Ctrl+Z退出
+                if (input == null)
+                {
+                    Console.WriteLine("\n检测到退出信号。");
+                    isRunning = false;
+                    continue;
+                }
                 string[] parts = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (parts.Length == 0)
                 {
-                    Console.WriteLine("请输入正确指令");
+                    Console.WriteLine("别以为我不知道你没输入啊");
                     continue;
                 }
                 var cmdName = parts[0];
-                if (cmdName.ToLower() == "quit")
+                //获取数字
+                string[] commandArgs = parts.Skip(1).ToArray();
+
+                if (cmdName.ToLower() == "quit")//这里硬编码算了不搞花里胡哨
                 {
-                    Console.WriteLine("退出程序");
+                    Console.WriteLine("江湖再见！！拜拜");
                     isRunning = false;
                     continue;
                 }
-
-                Command.ICommand command;
-                if (commandDic.TryGetValue(cmdName, out command))
+                
+                //查找指令表，执行
+                if (commandDic.TryGetValue(cmdName, out Command.ICommand command))
                 {
-                    try
-                    {
-                        //获取数字
-                        string[] commandArgs = parts.Skip(1).ToArray();
-                        command.Execute(ref current, commandArgs);
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                        Console.WriteLine($"执行出错：{ex.Message}");
-                    }
-
+                    ExcuteCmd(command, ref current, commandArgs);
                 }
                 else
                 {
-                    Console.WriteLine($"无效指令:{cmdName}，请输入HELP查看指令");
+                    PrintError($"无效指令:{cmdName}，请输入HELP查看指令");
                     continue;
                 }
-
-
             }
             Console.WriteLine("江湖再见！！拜拜");
             Console.ReadKey();
             #endregion
         }
 
-        private static Dictionary<string, Command.ICommand> InitializeCommands(ref decimal current)
+        /// <summary>
+        /// 指令表初始化
+        /// </summary>
+        /// <returns></returns>
+        private static Dictionary<string, Command.ICommand> InitializeCommands()
         {
-            // 1. 先创建所有具体的命令实例
+            // 1. 先创建所有具体的指令实例
             var addCmd = new AddCommand();
             var subCmd = new SubCommand();
             var mulCmd = new MulCommand();
@@ -151,17 +152,16 @@ namespace CLIDemo
             var resetCmd = new ResetCommand();
 
             // 2. 把它们放入一个临时的列表中（为了传给 HelpCommand）
-            // 注意：此时列表里还没有 HelpCommand 自己
             var commandList = new List<Command.ICommand>
             {
                 addCmd, subCmd, mulCmd, divCmd, resetCmd
             };
 
-            // 3. 创建 HelpCommand，把上面的列表传进去！
+            // 3. 创建 HelpCommand，把上面的列表传进去
             var helpCmd = new HelpCommand(commandList);
 
             //注册命令
-            Dictionary<string, Command.ICommand> commandDic = new Dictionary<string, Command.ICommand>(StringComparer.OrdinalIgnoreCase)
+            return new Dictionary<string, Command.ICommand>(StringComparer.OrdinalIgnoreCase)
             {
                 { "add", addCmd },
                 { "sub", subCmd },
@@ -170,10 +170,44 @@ namespace CLIDemo
                 { "reset", resetCmd },
                 { "help", helpCmd }
             };
+        }
 
-            Console.WriteLine("欢迎使用命令行计算器！");
-            helpCmd.Execute(ref current, Array.Empty<string>());
-            return commandDic;
+        /// <summary>
+        /// 指令执行包含异常处理
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name=""></param>
+        /// <param name="args"></param>
+        private static void ExcuteCmd(Command.ICommand command, ref decimal current, string[] args)
+        {
+            try
+            {
+                command.Execute(ref current, args);
+            }
+            catch (ArgumentException ex)
+            {
+                PrintError(ex.Message);
+                Console.WriteLine($"提示：{command.Description}");
+            }
+            catch (DivideByZeroException ex)//除以0的特定错误
+            {
+                PrintError(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                PrintError(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 统一打印报错信息，修改信息字体颜色显示
+        /// </summary>
+        /// <param name="excetionMessage">报错信息</param>
+        private static void PrintError(string excetionMessage)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine($"[报错信息]：{excetionMessage}");
+            Console.ResetColor();
         }
     }
 }

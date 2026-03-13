@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\AddCommand.cs" />
+    <Compile Include="Command\ArgHelpers.cs" />
     <Compile Include="Command\DivCommand.cs" />
     <Compile Include="Command\HelpCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
