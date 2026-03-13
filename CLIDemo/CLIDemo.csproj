@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38FED3F5-4E7E-4D81-ADBC-DB5A8BE308ED}</ProjectGuid>
+    <ProjectGuid>{F745F3E1-AFAA-417C-A138-2A4C049D7FCD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleAppFW</RootNamespace>
-    <AssemblyName>ConsoleAppFW</AssemblyName>
+    <RootNamespace>CLIDemo</RootNamespace>
+    <AssemblyName>CLIDemo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,19 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InterfacePractice\IDataProvider.cs" />
-    <Compile Include="InterfacePractice\IExproter.cs" />
-    <Compile Include="InterfacePractice\IFlyable.cs" />
-    <Compile Include="InterfacePractice\IShape.cs" />
-    <Compile Include="Practice.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="InterfacePractice\接口题目.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

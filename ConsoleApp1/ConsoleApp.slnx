@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../CLIDemo/CLIDemo.csproj" Id="f745f3e1-afaa-417c-a138-2a4c049d7fcd" />
   <Project Path="../ConsoleAppFW/ConsoleAppFW.csproj" Id="38fed3f5-4e7e-4d81-adbc-db5a8be308ed" />
   <Project Path="ConsoleApp1.csproj" />
 </Solution>

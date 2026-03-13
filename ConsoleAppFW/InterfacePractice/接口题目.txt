@@ -1,0 +1,34 @@
+练习 1：基础实现
+定义一个接口 IShape，包含一个方法 double GetArea()。
+创建两个类 Circle（圆）和 Rectangle（矩形）实现该接口。
+Circle 需要有一个 Radius 属性。
+Rectangle 需要 Width 和 Height 属性。
+在 Main 函数中创建一个 List<IShape>，
+放入一个圆和一个矩形，遍历列表打印它们的面积。
+
+练习 2：多重实现
+定义接口 IFlyable (方法 Fly()) 和 ISwimmable 
+(方法 Swim())。
+创建一个类 Duck 同时实现这两个接口。
+思考题：如果一个类实现了两个接口，
+且这两个接口都有同名方法 void DoWork()，
+如何在类中区分实现？
+（提示：显式接口实现）。请在代码中演示这种情况。
+
+
+练习 3：依赖注入模拟
+定义接口 IDataProvider，方法 string GetData()。
+实现 ApiDataProvider：返回 "Data from API"。
+实现 FileDataProvider：返回 "Data from File"。
+创建一个 BusinessService 类，其构造函数接收 IDataProvider。该类有一个方法 Process()，调用依赖项的 GetData() 并打印结果前缀 "Processing: "。
+在 Main 中分别实例化 BusinessService 传入不同的 Provider，观察输出变化。
+
+练习4：重构一段代码
+提取 IExporter 接口。
+让 PdfExporter 实现该接口。
+再创建一个 ExcelExporter 实现该接口。
+重构 ReportGenerator，使其依赖 IExporter 并通过构造函数注入。
+展示如何在不修改 ReportGenerator 的情况下切换导出格式。
+
+
+C# 图解教程 第五版
