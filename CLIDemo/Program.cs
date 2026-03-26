@@ -15,7 +15,7 @@ namespace CLIDemo
     /// </summary>
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             #region 船新版本
             Console.Write("> ");

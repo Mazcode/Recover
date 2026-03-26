@@ -1,6 +1,10 @@
 <Solution>
-  <Project Path="../CLIArray/CLIArray.csproj" Id="f85290a4-4e2d-42d9-b64f-f711e84915f8" />
-  <Project Path="../CLIDemo/CLIDemo.csproj" Id="f745f3e1-afaa-417c-a138-2a4c049d7fcd" />
-  <Project Path="../ConsoleAppFW/ConsoleAppFW.csproj" Id="38fed3f5-4e7e-4d81-adbc-db5a8be308ed" />
-  <Project Path="ConsoleApp1.csproj" />
+  <Project Path="../StateMachineDemo/StateMachineDemo.csproj" Id="402b4fce-08a2-4015-9a4a-f0661a3b0308" />
+  <Project Path="G:/Recover/CSharp/CFIOThread/CFIOThread.csproj" Id="004b6975-58d0-40ac-ae97-c1358fef66ac" />
+  <Project Path="G:/Recover/CSharp/CLIArray/CLIArray.csproj" Id="f85290a4-4e2d-42d9-b64f-f711e84915f8" />
+  <Project Path="G:/Recover/CSharp/CLIDemo/CLIDemo.csproj" Id="f745f3e1-afaa-417c-a138-2a4c049d7fcd" />
+  <Project Path="G:/Recover/CSharp/CLIThread/CLIThread.csproj" Id="5a07df38-ac40-4ad6-b997-b4d8938c4f11" />
+  <Project Path="G:/Recover/CSharp/ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="G:/Recover/CSharp/ConsoleAppFW/ConsoleAppFW.csproj" Id="38fed3f5-4e7e-4d81-adbc-db5a8be308ed" />
+  <Project Path="G:/Recover/CSharp/MethodOverloading/MethodOverloading.csproj" Id="048f5c2a-efed-4ea3-b286-c761da5da509" />
 </Solution>

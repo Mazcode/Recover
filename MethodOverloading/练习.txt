@@ -1,0 +1,31 @@
+﻿练习 1：基础重载 
+题目：创建一个 ShapeArea 类。
+编写一个 CalculateArea 方法，接受一个 double radius，计算圆的面积 ( 
+重载该方法，接受 double width 和 double height，计算矩形面积。
+重载该方法，接受 double side，计算正方形面积（提示：可以调用矩形版本以减少代码重复）。
+
+练习 2：可选参数与命名参数 
+题目：模拟一个电商订单系统。
+创建一个方法 CreateOrder：
+必需参数：string productName, int quantity。
+可选参数：string couponCode (默认 null), bool isExpress (默认 false), string notes (默认空字符串)。
+要求：
+在方法体内打印订单详情。
+演示三种调用方式：
+只传必需参数。
+传必需参数 + 优惠券。
+使用命名参数跳过中间参数，直接设置 notes 和 isExpress。
+
+练习 3：params 与统计 (
+题目：创建一个 Statistics 类。
+编写方法 GetAverage，使用 params double[] values 接收任意数量的数字，返回平均值。
+编写方法 GetMinMax，使用 params int[] values，利用 out 参数返回最小值和最大值（或者使用 Tuple 返回）。
+测试传入 0 个参数时的行为（需处理除以零异常或返回默认值）。
+
+练习 4：综合挑战 - 配置文件读取器 (难度：★★★)
+题目：设计一个 ConfigReader 类的方法 GetValue。
+需求：从模拟的配置字典中读取值。
+重载 1：GetValue(string key) -> 返回 string，如果不存在抛出异常。
+重载 2：GetValue(string key, string defaultValue) -> 不存在时返回默认值。
+重载 3：GetValue<T>(string key, T defaultValue = default(T)) -> 泛型方法，尝试将字符串转换为类型 T (如 int, bool)，失败则返回默认值。
+思考：如何利用可选参数简化重载 2 和 3 的定义？
